@@ -1,3 +1,4 @@
+<?php namespace Desafio ?>
 <div class="titulo">Desafio intdiv()</div>
 
 <?php
@@ -9,27 +10,21 @@ class Excessoes extends Exception
     }
 }
 
-class TrataErros
+function intdiv($num1, $num2)
 {
-    public function intdiv($num1, $num2)
-    {
-        $num1 / $num2;
-        if ($num2 == 0) {
-            throw new Excessoes('Divisão por zero!');
-        }
+    $num1 / $num2;
+    if ($num2 == 0) {
+        throw new Excessoes('Divisão por zero!');
+    }
+    $resultado = $num1 % $num2;
+    if ($resultado != 0) {
+        throw new Excessoes('A divisão dos numeros não da um numero inteiro!!');
+    }
 
-        $resultado = $num1 % $num2;
-        if ($resultado != 0) {
-            throw new Excessoes('A divisão dos numeros não da um numero inteiro!!');
-        }
-
-        if ($resultado == 0) {
-            echo "O resultado é: " . $num1 / $num2;
-        }
+    if ($resultado == 0) {
+        echo "O resultado é: " . $num1 / $num2;
     }
 }
-
-$teste = new TrataErros();
 
 try {
     $teste->intdiv(8, 0);
@@ -37,5 +32,5 @@ try {
     echo $e->getMessage();
 }
 
-echo "<br>" . intdiv(8, 3);
+echo "<br>" . \intdiv(8, 3);
 
